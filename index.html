@@ -12,25 +12,21 @@
       --text: #f1f5f9;
       --text-muted: #94a3b8;
       
-      /* Base Palettes */
       --amber: #f59e0b;
       --teal: #0d9488;
       --indigo: #6366f1;
       
-      /* Gradients / Ombré */
       --grad-edu-build: linear-gradient(135deg, #f59e0b, #ec4899, #6366f1);
       --grad-edu-coord: linear-gradient(135deg, #f59e0b, #84cc16, #0d9488);
       --grad-coord-build: linear-gradient(135deg, #0d9488, #06b6d4, #6366f1);
-      
-      /* Krypt Glows */
-      --self-glow: rgba(255, 255, 255, 0.85);
+      --self-glow: rgba(255, 255, 255, 0.9);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
     body {
@@ -64,7 +60,6 @@
       line-height: 1.5;
     }
 
-    /* 4 Rows x 5 Columns Rectangular Frame */
     .puzzle-container {
       background: #030712;
       border: 2px solid #1e293b;
@@ -93,7 +88,7 @@
       padding: 10px;
       text-align: center;
       user-select: none;
-      transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s ease, filter 0.2s ease;
+      transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
       box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
     }
 
@@ -118,37 +113,15 @@
       line-height: 1.2;
     }
 
-    /* Primary Zones */
-    .zone-edu {
-      background-color: var(--amber);
-      color: #1a1001;
-    }
+    /* Core Zones */
+    .zone-edu { background-color: var(--amber); color: #1a1001; }
+    .zone-coord { background-color: var(--teal); color: #011f1c; }
+    .zone-build { background-color: var(--indigo); color: #ffffff; }
 
-    .zone-coord {
-      background-color: var(--teal);
-      color: #011f1c;
-    }
-
-    .zone-build {
-      background-color: var(--indigo);
-      color: #ffffff;
-    }
-
-    /* Ombré Overlap Zones */
-    .zone-edu-build {
-      background: var(--grad-edu-build);
-      color: #ffffff;
-    }
-
-    .zone-edu-coord {
-      background: var(--grad-edu-coord);
-      color: #06201b;
-    }
-
-    .zone-coord-build {
-      background: var(--grad-coord-build);
-      color: #ffffff;
-    }
+    /* Ombré Overlaps */
+    .zone-edu-build { background: var(--grad-edu-build); color: #ffffff; }
+    .zone-edu-coord { background: var(--grad-edu-coord); color: #06201b; }
+    .zone-coord-build { background: var(--grad-coord-build); color: #ffffff; }
 
     /* Center Self Core */
     .zone-self {
@@ -162,15 +135,15 @@
       letter-spacing: 0.14em;
     }
 
-    /* White / Border Tiles (Unwritten) */
+    /* White / Border Pieces */
     .zone-white {
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.05);
       border: 1.5px dashed #475569;
       color: var(--text-muted);
       box-shadow: none;
     }
     .zone-white:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
       border-color: #94a3b8;
     }
 
@@ -196,12 +169,6 @@
       padding: 32px;
       position: relative;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
-      animation: modalFadeIn 0.2s ease-out;
-    }
-
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1); }
     }
 
     .modal-close {
@@ -267,13 +234,140 @@
   </header>
 
   <div class="puzzle-container">
-    <div class="puzzle-grid" id="grid"></div>
+    <div class="puzzle-grid">
+      <!-- ROW 1 -->
+      <div class="piece zone-white" onclick="showModal('Emerging Trajectory', 'Space for Becoming', 'Intentionally left uncolored. Demonstrates intellectual humility and space for future graduate studies, untested technical domains, and continuous learning.', 'Describing where I am at, and taking one step in the direction I choose.')">
+        <div class="piece-title">White Piece</div>
+        <div class="piece-desc">Unwritten Spec</div>
+      </div>
+
+      <div class="piece zone-edu" onclick="showModal('Primary Anchor', 'Patience Over Authority', 'Tutoring elementary students taught me that projecting stern authority causes people to shut down. Real professionalism is being reliable enough that someone feels safe to fail and learn slowly.', 'I had to be the reliable one between us... making sure they knew they could make mistakes.')">
+        <div class="piece-title">Education</div>
+        <div class="piece-desc">Kumon Tutoring</div>
+      </div>
+
+      <div class="piece zone-edu" onclick="showModal('Primary Anchor', 'Demystifying Complexity', 'My default instinct is to make dense, intimidating concepts approachable. In the spirit of mutual aid, offering patience and clarity is what I give most generously.', 'I’ve learned that I really enjoy education—whether continuing my own or mentoring others.')">
+        <div class="piece-title">Education</div>
+        <div class="piece-desc">Knowledge Transfer</div>
+      </div>
+
+      <div class="piece zone-edu-build" onclick="showModal('Intersection', 'Mentorship in Technical Spaces', 'Where software engineering meets pedagogy. Actively breaking down gatekeeping and creating work cultures where junior engineers are encouraged to ask questions without shame.', 'Creating places where education and mentorship are normalized inside industry.')">
+        <div class="piece-title">Edu × Building</div>
+        <div class="piece-desc">Ombré Overlap</div>
+      </div>
+
+      <div class="piece zone-white" onclick="showModal('Emerging Trajectory', 'Ethical Stance & Taking Sides', 'Reserved for future advocacy around the human impacts of technical infrastructure, choosing human welfare over institutional speed.', 'Whatever work we choose, we will need to take sides.')">
+        <div class="piece-title">White Piece</div>
+        <div class="piece-desc">Policy & Ethics</div>
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="piece zone-coord" onclick="showModal('Primary Anchor', 'Managing Logistical Chaos', 'Putting on campus events for 700+ people required handling invisible operational chaos without letting it bleed onto attendees.', 'I learned how to get an event running smoothly by managing all the chaos.')">
+        <div class="piece-title">Coordination</div>
+        <div class="piece-desc">Cascadia Events</div>
+      </div>
+
+      <div class="piece zone-edu-coord" onclick="showModal('Intersection', 'Empathetic Operations', 'Designing team workflows, workshops, and student support structures where logistics serve human bandwidth and psychological safety.', 'Logistics are fundamentally relational, not just administrative.')">
+        <div class="piece-title">Coord × Edu</div>
+        <div class="piece-desc">Ombré Overlap</div>
+      </div>
+
+      <div class="piece zone-self" onclick="showModal('The Center', 'The Self (Richard Schwartz)', 'The central hub where all identities unite. Grounded in No Bad Parts, this core rejects the demand to compartmentalize my tutoring, event planning, and engineering into separate masks.', 'Embrace them as what makes a Self.')">
+        <div class="piece-title">Self</div>
+        <div class="piece-desc">Integrated Core</div>
+      </div>
+
+      <div class="piece zone-edu-build" onclick="showModal('Intersection', 'Accessible Documentation', 'Treating code architecture with pedagogical empathy. Writing technical specifications meant to teach rather than intimidate.', 'Building tools that serve human comprehension rather than individual ego.')">
+        <div class="piece-title">Edu × Building</div>
+        <div class="piece-desc">Ombré Overlap</div>
+      </div>
+
+      <div class="piece zone-build" onclick="showModal('Primary Anchor', 'Systems Thinking & Scale', 'Executing production deliverables in corporate tech. Solving complex problems while remembering the human users interacting with the product.', 'This time I was working with professionals in the industry... on projects that reached customers.')">
+        <div class="piece-title">Building</div>
+        <div class="piece-desc">Corporate Tech</div>
+      </div>
+
+      <!-- ROW 3 -->
+      <div class="piece zone-coord" onclick="showModal('Primary Anchor', 'Advocacy Across Hierarchies', 'Interacting with college administrators and outside vendors taught me to put myself forward, speak up, and advocate for shared community resources.', 'I had to put myself out there and advocate for myself.')">
+        <div class="piece-title">Coordination</div>
+        <div class="piece-desc">Advocacy</div>
+      </div>
+
+      <div class="piece zone-coord-build" onclick="showModal('Intersection', 'Humane Project Pipelines', 'Treating team workflows and sprint cadences with the same care and rigor as software codebases, ensuring teams do not burn out.', 'I like working with other people to create things, whether a program or an event.')">
+        <div class="piece-title">Coord × Building</div>
+        <div class="piece-desc">Ombré Overlap</div>
+      </div>
+
+      <div class="piece zone-coord-build" onclick="showModal('Intersection', 'De-Siloing Communication', 'Bridging the gap between engineering tickets and organizational delivery. Ensuring engineers and stakeholders communicate with radical transparency.', 'Right relationship means transparency over corporate silence.')">
+        <div class="piece-title">Coord × Building</div>
+        <div class="piece-desc">Ombré Overlap</div>
+      </div>
+
+      <div class="piece zone-build" onclick="showModal('Primary Anchor', 'Unlearning the Standup Mask', 'Resisting the subtle corporate pressure to sound perpetually in control. Choosing honest, collaborative debugging over defensive posturing.', 'The badge and standup meetings were just the set dressing.')">
+        <div class="piece-title">Building</div>
+        <div class="piece-desc">Software Deliverables</div>
+      </div>
+
+      <div class="piece zone-white" onclick="showModal('Emerging Trajectory', 'Civic Systems & Mutual Aid', 'Space set aside for technical systems built for public good outside of standard corporate profit models.', 'Choosing human well-being over corporate posturing.')">
+        <div class="piece-title">White Piece</div>
+        <div class="piece-desc">Community Tech</div>
+      </div>
+
+      <!-- ROW 4 -->
+      <div class="piece zone-white" onclick="showModal('Emerging Trajectory', 'Unlearning the Protector', 'Leaving room to actively unlearn the perfectionist impulses and over-functioning caretaker habits that prevent speaking up.', 'Where these pieces get stuck, and what needs to be unlearned.')">
+        <div class="piece-title">White Piece</div>
+        <div class="piece-desc">Unlearned Habits</div>
+      </div>
+
+      <div class="piece zone-coord-build" onclick="showModal('Intersection', 'Operational Resilience', 'Remaining grounded when production code breaks or live logistics fail, focusing on immediate remediation rather than blame.', 'Absorbing friction so a team can function.')">
+        <div class="piece-title">Coord × Building</div>
+        <div class="piece-desc">Ombré Overlap</div>
+      </div>
+
+      <div class="piece zone-white" onclick="showModal('Emerging Trajectory', 'Interdisciplinary Synthesis', 'Space reserved for future materials science and computational synthesis, bringing lab research into applied systems.', 'Continuing my own education as an ongoing commitment.')">
+        <div class="piece-title">White Piece</div>
+        <div class="piece-desc">Future Research</div>
+      </div>
+
+      <div class="piece zone-build" onclick="showModal('Primary Anchor', 'Authentic Engineering', 'Showing up as an engineer without adopting cold, aggressive competitive habits or checking empathy at the door.', 'Refusing to internalize the idea that cold detachment is maturity.')">
+        <div class="piece-title">Building</div>
+        <div class="piece-desc">Technical Identity</div>
+      </div>
+
+      <div class="piece zone-white" onclick="showModal('Emerging Trajectory', 'Open-Ended Practice', 'A final blank tile reminding the viewer that this professional framework remains an evolving, open practice.', 'Professionalism as an active, unfinished construction.')">
+        <div class="piece-title">White Piece</div>
+        <div class="piece-desc">Next Stage</div>
+      </div>
+    </div>
   </div>
 
-  <div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal" onclick="closeModal()">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal()">&times;</button>
       <div class="modal-tag" id="mTag">Domain</div>
       <h2 class="modal-title" id="mTitle">Title</h2>
-      <p class="modal-body" id="mBody">Insight body text goes here.</p>
-      <div
+      <p class="modal-body" id="mBody">Content</p>
+      <div class="modal-quote" id="mQuote">Quote</div>
+    </div>
+  </div>
+
+  <script>
+    function showModal(tag, title, body, quote) {
+      document.getElementById('mTag').textContent = tag;
+      document.getElementById('mTitle').textContent = title;
+      document.getElementById('mBody').textContent = body;
+      document.getElementById('mQuote').textContent = `"${quote}"`;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
