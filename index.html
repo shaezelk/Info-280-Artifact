@@ -18,7 +18,7 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     body { background-color: var(--bg); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 16px; }
-    header { text-align: center; margin-bottom: 24px; max-width: 720px; }
+    header { text-align: center; margin-bottom: 20px; max-width: 720px; }
     h1 { font-size: 1.6rem; letter-spacing: 0.04em; font-weight: 800; color: #831843; margin-bottom: 8px; }
     p.subtitle { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; font-weight: 500; }
 
@@ -78,73 +78,78 @@
           <feGaussianBlur stdDeviation="6" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
+        <!-- Standardized, perfectly symmetrical single wedge template (span: 37.5°, leaving 2.5° uniform gap) -->
+        <!-- Inner R: 126, Outer R: 325, Centered on top (y-axis) -->
+        <path id="wedgePath" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" />
       </defs>
 
       <circle cx="400" cy="400" r="335" fill="none" stroke="#f1ece3" stroke-width="2" />
       <circle cx="400" cy="400" r="342" fill="none" stroke="#e6dfd3" stroke-width="1" stroke-dasharray="3 4" />
 
-      <!-- All 9 Pieces Hardcoded into Pure HTML -->
-      <!-- 0: EDUCATOR -->
+      <!-- 0: EDUCATOR (Top Anchor: 0 deg) -->
       <g class="piece-group" onclick="openPieceModal(0)">
-        <path d="M 357.24 282.47 L 288.84 94.42 A 325 325 0 0 1 511.16 94.42 L 442.76 282.47 A 125 125 0 0 0 357.24 282.47 Z" fill="#f472b6" stroke="#db2777" stroke-width="2" />
-        <text x="400" y="165" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">EDUCATOR</text>
-        <text x="400" y="191" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8.5" font-weight="700">[ MAIN SKILL ]</text>
+        <use href="#wedgePath" fill="#f472b6" stroke="#db2777" stroke-width="2" />
+        <text x="400" y="180" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">EDUCATOR</text>
+        <text x="400" y="202" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
-      <!-- 1: MENTORSHIP -->
+      <!-- 1: MENTORSHIP (+40 deg) -->
       <g class="piece-group" onclick="openPieceModal(1)">
-        <path d="M 442.76 282.47 L 511.16 94.42 A 325 325 0 0 1 676.65 228.45 L 506.40 334.02 A 125 125 0 0 0 442.76 282.47 Z" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
-        <text x="546" y="228" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="12" font-weight="800">MENTORSHIP</text>
-        <text x="546" y="254" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="8.5" font-weight="700">[ MAIN SKILL ]</text>
+        <use href="#wedgePath" transform="rotate(40 400 400)" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
+        <text x="545" y="228" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="11.5" font-weight="800">MENTORSHIP</text>
+        <text x="545" y="250" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
-      <!-- 2: CONTINUED LEARNING -->
+      <!-- 2: CONTINUED LEARNING (+80 deg) -->
       <g class="piece-group" onclick="openPieceModal(2)">
-        <path d="M 506.40 334.02 L 676.65 228.45 A 325 325 0 0 1 720.10 456.44 L 523.11 421.71 A 125 125 0 0 0 506.40 334.02 Z" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
-        <text x="618" y="350" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="11" font-weight="800">CONTINUED LEARNING</text>
-        <text x="618" y="376" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8.5" font-weight="700">[ CURRENTLY LEARNING ]</text>
+        <use href="#wedgePath" transform="rotate(80 400 400)" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
+        <text x="622" y="348" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="10" font-weight="800">CONTINUED</text>
+        <text x="622" y="364" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="10" font-weight="800">LEARNING</text>
+        <text x="622" y="386" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="7.5" font-weight="700">[ CURRENTLY LEARNING ]</text>
       </g>
 
-      <!-- 3: COORDINATOR -->
+      <!-- 3: COORDINATOR (Bottom-Right Anchor: +120 deg) -->
       <g class="piece-group" onclick="openPieceModal(3)">
-        <path d="M 523.11 421.71 L 720.10 456.44 A 325 325 0 0 1 624.73 634.36 L 486.43 490.14 A 125 125 0 0 0 523.11 421.71 Z" fill="#f472b6" stroke="#db2777" stroke-width="2" />
-        <text x="599" y="504" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">COORDINATOR</text>
-        <text x="599" y="530" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8.5" font-weight="700">[ MAIN SKILL ]</text>
+        <use href="#wedgePath" transform="rotate(120 400 400)" fill="#f472b6" stroke="#db2777" stroke-width="2" />
+        <text x="595" y="500" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">COORDINATOR</text>
+        <text x="595" y="522" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
-      <!-- 4: HUMANE TECH OPS -->
+      <!-- 4: HUMANE TECH OPS (+160 deg) -->
       <g class="piece-group" onclick="openPieceModal(4)">
-        <path d="M 486.43 490.14 L 624.73 634.36 A 325 325 0 0 1 437.66 722.81 L 414.49 524.16 A 125 125 0 0 0 486.43 490.14 Z" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
-        <text x="502" y="618" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="12" font-weight="800">HUMANE TECH OPS</text>
-        <text x="502" y="644" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="8.5" font-weight="700">[ CURRENTLY LEARNING ]</text>
+        <use href="#wedgePath" transform="rotate(160 400 400)" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
+        <text x="478" y="608" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10.5" font-weight="800">HUMANE TECH</text>
+        <text x="478" y="624" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10.5" font-weight="800">OPS</text>
+        <text x="478" y="646" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="7.5" font-weight="700">[ CURRENTLY LEARNING ]</text>
       </g>
 
-      <!-- 5: RESTRUCTURING -->
+      <!-- 5: RESTRUCTURING (+200 deg) -->
       <g class="piece-group" onclick="openPieceModal(5)">
-        <path d="M 414.49 524.16 L 437.66 722.81 A 325 325 0 0 1 247.90 687.35 L 341.50 510.52 A 125 125 0 0 0 414.49 524.16 Z" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
-        <text x="353" y="632" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="12" font-weight="800">RESTRUCTURING</text>
-        <text x="353" y="658" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8.5" font-weight="700">[ FUTURE GOAL ]</text>
+        <use href="#wedgePath" transform="rotate(200 400 400)" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
+        <text x="322" y="616" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="10.5" font-weight="800">RESTRUCTURING</text>
+        <text x="322" y="638" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8" font-weight="700">[ FUTURE GOAL ]</text>
       </g>
 
-      <!-- 6: BUILDER -->
+      <!-- 6: BUILDER (Bottom-Left Anchor: +240 deg) -->
       <g class="piece-group" onclick="openPieceModal(6)">
-        <path d="M 341.50 510.52 L 247.90 687.35 A 325 325 0 0 1 106.84 538.35 L 287.25 453.21 A 125 125 0 0 0 341.50 510.52 Z" fill="#f472b6" stroke="#db2777" stroke-width="2" />
-        <text x="219" y="540" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">BUILDER</text>
-        <text x="219" y="566" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8.5" font-weight="700">[ MAIN SKILL ]</text>
+        <use href="#wedgePath" transform="rotate(240 400 400)" fill="#f472b6" stroke="#db2777" stroke-width="2" />
+        <text x="205" y="500" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">BUILDER</text>
+        <text x="205" y="522" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
-      <!-- 7: RELATIONAL TEAMWORK -->
+      <!-- 7: RELATIONAL TEAMWORK (+280 deg) -->
       <g class="piece-group" onclick="openPieceModal(7)">
-        <path d="M 287.25 453.21 L 106.84 538.35 A 325 325 0 0 1 94.42 311.16 L 282.47 365.83 A 125 125 0 0 0 287.25 453.21 Z" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
-        <text x="166" y="394" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="11" font-weight="800">RELATIONAL TEAMWORK</text>
-        <text x="166" y="420" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="8.5" font-weight="700">[ MAIN SKILL ]</text>
+        <use href="#wedgePath" transform="rotate(280 400 400)" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
+        <text x="178" y="348" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">RELATIONAL</text>
+        <text x="178" y="364" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">TEAMWORK</text>
+        <text x="178" y="386" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="7.5" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
-      <!-- 8: SPEAKING OUT -->
+      <!-- 8: SPEAKING OUT (+320 deg) -->
       <g class="piece-group" onclick="openPieceModal(8)">
-        <path d="M 282.47 365.83 L 94.42 311.16 A 325 325 0 0 1 200.00 143.78 L 323.08 301.45 A 125 125 0 0 0 282.47 365.83 Z" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
-        <text x="228" y="246" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="12" font-weight="800">SPEAKING OUT</text>
-        <text x="228" y="272" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8.5" font-weight="700">[ FUTURE GOAL ]</text>
+        <use href="#wedgePath" transform="rotate(320 400 400)" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
+        <text x="255" y="228" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="11.5" font-weight="800">SPEAKING OUT</text>
+        <text x="255" y="250" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8" font-weight="700">[ FUTURE GOAL ]</text>
       </g>
 
       <!-- Center Circle: Self -->
