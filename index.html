@@ -36,16 +36,46 @@
     }
 
     svg.radial-svg { width: 100%; height: auto; max-height: 720px; filter: drop-shadow(0 4px 12px rgba(131, 24, 67, 0.06)); }
-    .piece-group { cursor: pointer; transition: transform 0.2s ease, filter 0.2s ease; transform-origin: 400px 400px; }
-    .piece-group:hover { filter: brightness(1.05) drop-shadow(0 0 12px rgba(244, 114, 182, 0.45)); }
     
-    .center-circle { cursor: pointer; transition: transform 0.2s ease, filter 0.2s ease; transform-origin: 400px 400px; }
-    .center-circle:hover { transform: scale(1.02); filter: drop-shadow(0 0 18px rgba(244, 114, 182, 0.5)); }
+    .piece-group { 
+      cursor: pointer; 
+      pointer-events: auto;
+      transition: transform 0.2s ease, filter 0.2s ease; 
+      transform-origin: 400px 400px; 
+    }
+    .piece-group:hover { 
+      filter: brightness(1.05) drop-shadow(0 0 12px rgba(244, 114, 182, 0.45)); 
+    }
+    
+    .wedge-path {
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    .piece-group text {
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .center-circle { 
+      cursor: pointer; 
+      pointer-events: auto;
+      transition: transform 0.2s ease, filter 0.2s ease; 
+      transform-origin: 400px 400px; 
+    }
+    .center-circle:hover { 
+      transform: scale(1.02); 
+      filter: drop-shadow(0 0 18px rgba(244, 114, 182, 0.5)); 
+    }
+    .center-circle text {
+      pointer-events: none;
+      user-select: none;
+    }
 
     /* Modals */
     .modal-overlay {
       position: fixed; inset: 0; background: rgba(51, 39, 43, 0.45); backdrop-filter: blur(6px);
-      display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px;
+      display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px;
     }
     .modal-card {
       background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px;
@@ -117,8 +147,6 @@
           <feGaussianBlur stdDeviation="6" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
-        <!-- Uniform 37.5° wedge with 2.5° natural gaps -->
-        <path id="wedgePath" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" />
       </defs>
 
       <circle cx="400" cy="400" r="335" fill="none" stroke="#f1ece3" stroke-width="2" />
@@ -126,58 +154,58 @@
 
       <!-- 0: EDUCATOR (Top Anchor: 0°) -->
       <g class="piece-group" onclick="openPieceModal(0)">
-        <use href="#wedgePath" fill="#f472b6" stroke="#db2777" stroke-width="2" />
+        <path class="wedge-path" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#f472b6" stroke="#db2777" stroke-width="2" />
         <text x="400" y="180" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">EDUCATOR</text>
         <text x="400" y="202" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
-      <!-- 1: CONTINUED LEARNING (+40°) -> Swapped next to Educator -->
+      <!-- 1: CONTINUED LEARNING (+40°) -->
       <g class="piece-group" onclick="openPieceModal(1)">
-        <use href="#wedgePath" transform="rotate(40 400 400)" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
+        <path class="wedge-path" transform="rotate(40 400 400)" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
         <text x="545" y="218" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">CONTINUED</text>
         <text x="545" y="232" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">LEARNING</text>
         <text x="545" y="252" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="7.5" font-weight="700">[ CURRENTLY LEARNING ]</text>
       </g>
 
-      <!-- 2: MENTORSHIP (+80°) -> Swapped next to Coordinator -->
+      <!-- 2: MENTORSHIP (+80°) -->
       <g class="piece-group" onclick="openPieceModal(2)">
-        <use href="#wedgePath" transform="rotate(80 400 400)" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
+        <path class="wedge-path" transform="rotate(80 400 400)" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
         <text x="622" y="352" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="11.5" font-weight="800">MENTORSHIP</text>
         <text x="622" y="374" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8" font-weight="700">[ FUTURE GOAL ]</text>
       </g>
 
       <!-- 3: COORDINATOR (Anchor: +120°) -->
       <g class="piece-group" onclick="openPieceModal(3)">
-        <use href="#wedgePath" transform="rotate(120 400 400)" fill="#f472b6" stroke="#db2777" stroke-width="2" />
+        <path class="wedge-path" transform="rotate(120 400 400)" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#f472b6" stroke="#db2777" stroke-width="2" />
         <text x="595" y="500" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">COORDINATOR</text>
         <text x="595" y="522" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
       <!-- 4: HUMANE TECH OPS (+160°) -->
       <g class="piece-group" onclick="openPieceModal(4)">
-        <use href="#wedgePath" transform="rotate(160 400 400)" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
-        <text x="478" y="608" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">HUMANE TECH</text>
-        <text x="478" y="624" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">OPS</text>
+        <path class="wedge-path" transform="rotate(160 400 400)" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
+        <text x="478" y="608" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10.5" font-weight="800">HUMANE TECH</text>
+        <text x="478" y="624" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10.5" font-weight="800">OPS</text>
         <text x="478" y="646" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="7.5" font-weight="700">[ CURRENTLY LEARNING ]</text>
       </g>
 
       <!-- 5: RESTRUCTURING (+200°) -->
       <g class="piece-group" onclick="openPieceModal(5)">
-        <use href="#wedgePath" transform="rotate(200 400 400)" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
+        <path class="wedge-path" transform="rotate(200 400 400)" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
         <text x="322" y="616" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="10.5" font-weight="800">RESTRUCTURING</text>
         <text x="322" y="638" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8" font-weight="700">[ FUTURE GOAL ]</text>
       </g>
 
       <!-- 6: BUILDER (Anchor: +240°) -->
       <g class="piece-group" onclick="openPieceModal(6)">
-        <use href="#wedgePath" transform="rotate(240 400 400)" fill="#f472b6" stroke="#db2777" stroke-width="2" />
+        <path class="wedge-path" transform="rotate(240 400 400)" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#f472b6" stroke="#db2777" stroke-width="2" />
         <text x="205" y="500" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">BUILDER</text>
         <text x="205" y="522" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
       <!-- 7: RELATIONAL TEAMWORK (+280°) -->
       <g class="piece-group" onclick="openPieceModal(7)">
-        <use href="#wedgePath" transform="rotate(280 400 400)" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
+        <path class="wedge-path" transform="rotate(280 400 400)" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
         <text x="178" y="348" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">RELATIONAL</text>
         <text x="178" y="364" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">TEAMWORK</text>
         <text x="178" y="386" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="7.5" font-weight="700">[ MAIN SKILL ]</text>
@@ -185,24 +213,5 @@
 
       <!-- 8: SPEAKING OUT (+320°) -->
       <g class="piece-group" onclick="openPieceModal(8)">
-        <use href="#wedgePath" transform="rotate(320 400 400)" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
-        <text x="255" y="228" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="11.5" font-weight="800">SPEAKING OUT</text>
-        <text x="255" y="250" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8" font-weight="700">[ FUTURE GOAL ]</text>
-      </g>
-
-      <!-- Center Circle: Who am I -->
-      <g class="center-circle" onclick="openSelfModal()">
-        <circle cx="400" cy="400" r="110" fill="#ffffff" stroke="#f472b6" stroke-width="4.5" filter="url(#glow-self)" />
-        <circle cx="400" cy="400" r="102" fill="none" stroke="#fdf2f8" stroke-width="2" />
-        <text x="400" y="394" text-anchor="middle" fill="#831843" font-size="20" font-weight="900" letter-spacing="2">WHO AM I</text>
-        <text x="400" y="416" text-anchor="middle" fill="#db2777" font-size="9" font-weight="700" letter-spacing="1">THE SELF</text>
-      </g>
-    </svg>
-  </div>
-
-  <!-- Detail Modal -->
-  <div class="modal-overlay" id="modal" onclick="closeModal()">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal()">&times;</button>
-      <div id="mBadge" class="modal-badge">Status</div>
-      <h2 class="modal-title" id="mTitle">Title</h2>
+        <path class="wedge-path" transform="rotate(320 400 400)" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
+        <text x
