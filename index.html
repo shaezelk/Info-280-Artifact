@@ -147,6 +147,8 @@
           <feGaussianBlur stdDeviation="6" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
+        <!-- Standardized 37.5° wedge with 2.5° uniform gap -->
+        <path id="wedgePath" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" />
       </defs>
 
       <circle cx="400" cy="400" r="335" fill="none" stroke="#f1ece3" stroke-width="2" />
@@ -181,19 +183,20 @@
         <text x="595" y="522" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
-      <!-- 4: HUMANE TECH OPS (+160°) -->
+      <!-- 4: OPTIMIZING WORKFLOWS (+160°) -->
       <g class="piece-group" onclick="openPieceModal(4)">
         <path class="wedge-path" transform="rotate(160 400 400)" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
-        <text x="478" y="608" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10.5" font-weight="800">HUMANE TECH</text>
-        <text x="478" y="624" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10.5" font-weight="800">OPS</text>
+        <text x="478" y="608" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">OPTIMIZING</text>
+        <text x="478" y="624" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">WORKFLOWS</text>
         <text x="478" y="646" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="7.5" font-weight="700">[ CURRENTLY LEARNING ]</text>
       </g>
 
-      <!-- 5: RESTRUCTURING (+200°) -->
+      <!-- 5: RESTRUCTURING PROFESSIONALISM (+200°) -->
       <g class="piece-group" onclick="openPieceModal(5)">
         <path class="wedge-path" transform="rotate(200 400 400)" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
-        <text x="322" y="616" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="10.5" font-weight="800">RESTRUCTURING</text>
-        <text x="322" y="638" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8" font-weight="700">[ FUTURE GOAL ]</text>
+        <text x="322" y="608" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="9.5" font-weight="800">RESTRUCTURING</text>
+        <text x="322" y="622" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="9" font-weight="800">PROFESSIONALISM</text>
+        <text x="322" y="642" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="7.5" font-weight="700">[ FUTURE GOAL ]</text>
       </g>
 
       <!-- 6: BUILDER (Anchor: +240°) -->
@@ -203,15 +206,166 @@
         <text x="205" y="522" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
-      <!-- 7: RELATIONAL TEAMWORK (+280°) -->
+      <!-- 7: RELATIONSHIPS & TEAMWORK (+280°) -->
       <g class="piece-group" onclick="openPieceModal(7)">
         <path class="wedge-path" transform="rotate(280 400 400)" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
-        <text x="178" y="348" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">RELATIONAL</text>
-        <text x="178" y="364" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">TEAMWORK</text>
+        <text x="178" y="348" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="9.5" font-weight="800">RELATIONSHIPS &</text>
+        <text x="178" y="364" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="9.5" font-weight="800">TEAMWORK</text>
         <text x="178" y="386" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="7.5" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
       <!-- 8: SPEAKING OUT (+320°) -->
       <g class="piece-group" onclick="openPieceModal(8)">
         <path class="wedge-path" transform="rotate(320 400 400)" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
-        <text x
+        <text x="255" y="228" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="11.5" font-weight="800">SPEAKING OUT</text>
+        <text x="255" y="250" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8" font-weight="700">[ FUTURE GOAL ]</text>
+      </g>
+
+      <!-- Center Circle: Who am I -->
+      <g class="center-circle" onclick="openSelfModal()">
+        <circle cx="400" cy="400" r="110" fill="#ffffff" stroke="#f472b6" stroke-width="4.5" filter="url(#glow-self)" />
+        <circle cx="400" cy="400" r="102" fill="none" stroke="#fdf2f8" stroke-width="2" />
+        <text x="400" y="394" text-anchor="middle" fill="#831843" font-size="20" font-weight="900" letter-spacing="2">WHO AM I</text>
+        <text x="400" y="416" text-anchor="middle" fill="#db2777" font-size="9" font-weight="700" letter-spacing="1">THE SELF</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="modal" onclick="closeModal()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div id="mBadge" class="modal-badge">Status</div>
+      <h2 class="modal-title" id="mTitle">Title</h2>
+      
+      <div class="section-label">Definition</div>
+      <p class="modal-definition" id="mDefinition">Definition text</p>
+      
+      <div class="action-box">
+        <div class="action-box-header" id="mActionHeader">Ways to grow this part</div>
+        <div class="action-box-content" id="mActionContent">Action steps</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modalData = [
+      // 0: Educator
+      {
+        title: "Educator",
+        status: "Main Skill",
+        badgeClass: "badge-main",
+        definition: "Through all my tutoring work through my Job at Kumon, learned to teach, and be patient with people.",
+        actionHeader: "Ways I've grown this skill",
+        actionContent: "Repeated tutoring, working with students of all ages to help me understand different backgrounds and ways of learning."
+      },
+      // 1: Continued Learning
+      {
+        title: "Continued Learning",
+        status: "Currently Learning",
+        badgeClass: "badge-learn",
+        definition: "Understanding that education can be an ongoing process. Restructuring the idea of professionalism to allow for people to continue growing and learning to develop themselves.",
+        actionHeader: "Ways to reach this part",
+        actionContent: "Take on challenging roles that might force me to expand my skill set and education. Continue learning both in technical settings and also from other people."
+      },
+      // 2: Mentorship
+      {
+        title: "Mentorship",
+        status: "Future Goal",
+        badgeClass: "badge-goal",
+        definition: "Through combining my skills in education and coordinating, I can help people grow and learn new tasks. In terms of professionalism, this can be mentoring new hires/coworkers in the work we’re doing. I can translate complex concepts into simple, more easily understandable ideas.",
+        actionHeader: "Ways to reach this part",
+        actionContent: "Gain more mentorship roles through clubs or organizations. Help identify what I want to pass on and how to use my tutoring skills to coach someone."
+      },
+      // 3: Coordinator
+      {
+        title: "Coordinator",
+        status: "Main Skill",
+        badgeClass: "badge-main",
+        definition: "Through my job as an event coordinator at Cascadia College, I learned a lot about planning and managing events. Handling all logistics and organization.",
+        actionHeader: "Ways I've grown this part",
+        actionContent: "Continued practice planning events, keeping my own personal life organized, helping manage teams in group settings."
+      },
+      // 4: Optimizing Workflows
+      {
+        title: "Optimizing Workflows",
+        status: "Currently Learning",
+        badgeClass: "badge-learn",
+        definition: "Combining organizational skills to build something that can make work much easier, using tools to eliminate unnecessary work and optimize time.",
+        actionHeader: "Ways to work on this part",
+        actionContent: "Find redundant tasks and work with people to organize work into parts that can be replicated by AI or other tools."
+      },
+      // 5: Restructuring Professionalism
+      {
+        title: "Restructuring Professionalism",
+        status: "Future Goal",
+        badgeClass: "badge-goal",
+        definition: "Rather than focusing on perfection, I want to focus on being authentic. Working with other people and building meaningful relationships rooted in trust, transparency, and vulnerability, that shows a partnership rather than competition.",
+        actionHeader: "Ways to reach this part",
+        actionContent: "Immersing myself in an environment that can be restructured, getting honest about my goals with people, leading by example and modeling what I want professionalism to look like."
+      },
+      // 6: Builder
+      {
+        title: "Builder",
+        status: "Main Skill",
+        badgeClass: "badge-main",
+        definition: "Through my work at a corporate tech company, building actual deliverables for customers, working on scalable systems and designing tangible products.",
+        actionHeader: "Ways to grow this part",
+        actionContent: "Practicing with random fun side projects, getting feedback from managers and coworkers, schoolwork, and other learning."
+      },
+      // 7: Relationships & Teamwork
+      {
+        title: "Relationships and Teamwork",
+        status: "Main Skill",
+        badgeClass: "badge-main",
+        definition: "Building relationships that are open and inviting. Working to create psychologically safe spaces that foster a partnership relationship rather than a competitive type of relationship.",
+        actionHeader: "Ways to grow this part",
+        actionContent: "Working with other people, lots of group projects where you play different roles, understanding what you and your team needs."
+      },
+      // 8: Speaking Out
+      {
+        title: "Speaking Out",
+        status: "Future Goal",
+        badgeClass: "badge-goal",
+        definition: "Gaining confidence to speak up and be expressive in places without fear of being wrong or judged. Being professional doesn't mean knowing everything right away.",
+        actionHeader: "Ways to work on this part",
+        actionContent: "Creating safer spaces, improving personal confidence, asking questions, getting to know the people you work with."
+      }
+    ];
+
+    function openPieceModal(idx) {
+      const item = modalData[idx];
+      showModal(item.status, item.badgeClass, item.title, item.definition, item.actionHeader, item.actionContent);
+    }
+
+    function openSelfModal() {
+      showModal(
+        "Integrated Core",
+        "badge-main",
+        "The Self",
+        "This piece is at the center of the whole wheel. This represents the professional definition of me that I am analyzing and exploring.",
+        "Ways to grow this piece",
+        "Continuously check in with yourself, be honest when evaluating your growth and what pillars are important to you; it's OK to change pillars as long as your overall image aligns with what you want to be."
+      );
+    }
+
+    function showModal(badge, bClass, title, definition, actionHeader, actionContent) {
+      document.getElementById('mBadge').textContent = badge;
+      document.getElementById('mBadge').className = `modal-badge ${bClass}`;
+      document.getElementById('mTitle').textContent = title;
+      document.getElementById('mDefinition').textContent = definition;
+      document.getElementById('mActionHeader').textContent = actionHeader;
+      document.getElementById('mActionContent').textContent = actionContent;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
