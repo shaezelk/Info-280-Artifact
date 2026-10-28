@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Relational Assemblage: A 20-Piece Spectrum</title>
+  <title>The Relational Spectrum: Radial Assemblage</title>
   <style>
     :root {
       --bg: #090d16;
@@ -11,405 +11,219 @@
       --border: #24324d;
       --text: #f1f5f9;
       --text-muted: #94a3b8;
-      
+      --teal-main: #0d9488;
+      --teal-light: #5eead4;
+      --pale-white: #f8fafc;
       --amber: #f59e0b;
-      --teal: #0d9488;
       --indigo: #6366f1;
-      --coral: #ec4899;
-      --cyan: #06b6d4;
-      
-      --pale-white: #f1f5f9;
-      --pale-white-border: #cbd5e1;
-      --pale-white-text: #1e293b;
-      --self-glow: rgba(255, 255, 255, 0.95);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+    header { text-align: center; margin-bottom: 16px; max-width: 650px; }
+    h1 { font-size: 1.35rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 800; margin-bottom: 6px; }
+    p.subtitle { color: var(--text-muted); font-size: 0.85rem; }
 
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 20px;
-      max-width: 750px;
-    }
-
-    h1 {
-      font-size: 1.4rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    p.subtitle {
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      line-height: 1.5;
-      margin-bottom: 14px;
-    }
-
-    .btn-bar {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-bottom: 8px;
-    }
-
-    .action-btn {
-      background: #1e293b;
-      color: #f8fafc;
-      border: 1px solid #334155;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.2s;
-    }
-    .action-btn:hover { background: #334155; }
-    .action-btn.primary { background: #f59e0b; color: #000; border-color: #f59e0b; }
-    .action-btn.primary:hover { background: #d97706; }
-
-    /* Puzzle Container & SVG Canvas */
-    .puzzle-wrapper {
-      background: #020617;
+    .canvas-wrapper {
+      background: #030712;
       border: 2px solid #1e293b;
-      padding: 16px;
-      border-radius: 14px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+      border-radius: 50%;
+      padding: 10px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.85);
       width: 100%;
-      max-width: 980px;
+      max-width: 780px;
       display: flex;
       justify-content: center;
-    }
-
-    svg.puzzle-svg {
-      width: 100%;
-      height: auto;
-      max-height: 600px;
-      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
-    }
-
-    .puzzle-piece {
-      cursor: pointer;
-      transition: transform 0.15s ease, filter 0.15s ease;
-      transform-origin: center;
-    }
-
-    .puzzle-piece:hover {
-      filter: brightness(1.2) drop-shadow(0 0 10px rgba(255,255,255,0.4));
-    }
-
-    .piece-text-title {
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      pointer-events: none;
-    }
-
-    .piece-text-sub {
-      font-size: 9px;
-      opacity: 0.85;
-      pointer-events: none;
-    }
-
-    /* Modals (Read & Edit) */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(4, 7, 14, 0.88);
-      backdrop-filter: blur(8px);
-      display: none;
       align-items: center;
-      justify-content: center;
-      z-index: 100;
-      padding: 20px;
     }
 
+    svg.radial-svg { width: 100%; height: auto; max-height: 720px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); }
+    .piece-group { cursor: pointer; transition: transform 0.2s ease, filter 0.2s ease; transform-origin: 400px 400px; }
+    .piece-group:hover { filter: brightness(1.2) drop-shadow(0 0 12px rgba(94, 234, 212, 0.4)); }
+    
+    .center-circle { cursor: pointer; transition: filter 0.2s ease; }
+    .center-circle:hover { filter: drop-shadow(0 0 20px rgba(255,255,255,0.9)); }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(4, 7, 14, 0.88); backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px;
+    }
     .modal-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      max-width: 540px;
-      width: 100%;
-      padding: 30px;
-      position: relative;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px;
+      max-width: 520px; width: 100%; padding: 28px; position: relative; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.9);
     }
+    .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer; }
+    .modal-badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+    .badge-main { background: #0f766e; color: #ccfbf1; }
+    .badge-learn { background: #854d0e; color: #fef08a; }
+    .badge-goal { background: #3730a3; color: #e0e7ff; }
 
-    .modal-close {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.4rem;
-      cursor: pointer;
-    }
-    .modal-close:hover { color: #fff; }
-
-    .modal-tag {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-      color: var(--amber);
-    }
-
-    .modal-title {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-
-    .modal-body {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #cbd5e1;
-      margin-bottom: 18px;
-    }
-
-    .modal-quote {
-      border-left: 3px solid var(--indigo);
-      padding-left: 14px;
-      font-style: italic;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-
-    /* In-App Editor */
-    .editor-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 12px;
-    }
-    .editor-form label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-    .editor-form input, .editor-form textarea, .editor-form select {
-      background: #090d16;
-      border: 1px solid #334155;
-      color: #fff;
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      width: 100%;
-    }
-    .editor-form textarea { min-height: 80px; resize: vertical; }
+    .modal-title { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+    .modal-body { font-size: 0.92rem; line-height: 1.6; color: #cbd5e1; margin-bottom: 14px; }
+    .action-plan { background: rgba(255,255,255,0.04); border-left: 3px solid var(--teal-light); padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 0.85rem; color: #e2e8f0; margin-bottom: 14px; }
+    .action-plan strong { color: var(--teal-light); display: block; margin-bottom: 4px; }
+    .modal-quote { border-left: 3px solid #6366f1; padding-left: 12px; font-style: italic; color: var(--text-muted); font-size: 0.8rem; }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>My Professional Puzzle</h1>
-    <p class="subtitle"> Click any piece to inspect.</p>
-    <div class="btn-bar">
-      <button class="action-btn primary" onclick="openEditor()">✏️ Edit Reflections & Text</button>
-      <button class="action-btn" onclick="resetDefaults()">Reset to Defaults</button>
-    </div>
+    <h1>The Relational Spectrum</h1>
+    <p class="subtitle">A radial assemblage of primary identities, bridging skills, and ongoing growth trajectory.</p>
   </header>
 
-  <div class="puzzle-wrapper">
-    <svg class="puzzle-svg" viewBox="0 0 1000 700" id="puzzleSvg">
+  <div class="canvas-wrapper">
+    <svg class="radial-svg" viewBox="0 0 800 800" id="radialSvg">
       <defs>
-        <!-- Gradients -->
-        <linearGradient id="grad-edu-build" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#f59e0b" />
-          <stop offset="50%" stop-color="#ec4899" />
-          <stop offset="100%" stop-color="#6366f1" />
-        </linearGradient>
-        <linearGradient id="grad-edu-coord" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#f59e0b" />
-          <stop offset="50%" stop-color="#84cc16" />
-          <stop offset="100%" stop-color="#0d9488" />
-        </linearGradient>
-        <linearGradient id="grad-coord-build" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#0d9488" />
-          <stop offset="50%" stop-color="#06b6d4" />
-          <stop offset="100%" stop-color="#6366f1" />
-        </linearGradient>
-        <!-- Glow Filter for Self -->
-        <filter id="self-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="10" result="blur" />
+        <filter id="glow-self" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="8" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
       </defs>
-      <g id="piecesGroup"></g>
+      <!-- Background Ring Track -->
+      <circle cx="400" cy="400" r="340" fill="none" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="4 4" />
+      <g id="ringPieces"></g>
+      <!-- Center Circle: Self -->
+      <g class="center-circle" onclick="openModal(selfData)">
+        <circle cx="400" cy="400" r="110" fill="#ffffff" stroke="#5eead4" stroke-width="4" filter="url(#glow-self)" />
+        <text x="400" y="394" text-anchor="middle" fill="#090d16" font-size="20" font-weight="900" letter-spacing="3">SELF</text>
+        <text x="400" y="416" text-anchor="middle" fill="#0f766e" font-size="9.5" font-weight="700" letter-spacing="1">INTEGRATED CORE</text>
+      </g>
     </svg>
   </div>
 
-  <!-- Detail Modal -->
-  <div class="modal-overlay" id="detailModal" onclick="closeModal('detailModal')">
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal" onclick="closeModal()">
     <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal('detailModal')">&times;</button>
-      <div class="modal-tag" id="mTag">Domain</div>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div id="mBadge" class="modal-badge">Status</div>
       <h2 class="modal-title" id="mTitle">Title</h2>
-      <p class="modal-body" id="mBody">Content</p>
-      <div class="modal-quote" id="mQuote">Quote</div>
-    </div>
-  </div>
-
-  <!-- In-App Editor Modal -->
-  <div class="modal-overlay" id="editModal" onclick="closeModal('editModal')">
-    <div class="modal-card" onclick="event.stopPropagation()" style="max-width: 600px;">
-      <button class="modal-close" onclick="closeModal('editModal')">&times;</button>
-      <h2 class="modal-title" style="margin-bottom: 6px;">Edit Piece Content</h2>
-      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px;">Customize the titles, insights, or statement quotes. Saves directly in your browser.</p>
-      
-      <div class="editor-form">
-        <div>
-          <label>Select Piece to Edit</label>
-          <select id="editPieceSelect" onchange="loadPieceIntoForm()"></select>
-        </div>
-        <div>
-          <label>Piece Title (On Puzzle)</label>
-          <input type="text" id="editTitle">
-        </div>
-        <div>
-          <label>Piece Subtitle (On Puzzle)</label>
-          <input type="text" id="editSub">
-        </div>
-        <div>
-          <label>Detailed Title (In Modal)</label>
-          <input type="text" id="editModalTitle">
-        </div>
-        <div>
-          <label>Insight & Reflection</label>
-          <textarea id="editBody"></textarea>
-        </div>
-        <div>
-          <label>Statement Quote</label>
-          <input type="text" id="editQuote">
-        </div>
-        <button class="action-btn primary" style="padding: 10px; margin-top: 6px;" onclick="saveCurrentEdit()">Save Changes</button>
+      <p class="modal-body" id="mBody">Description</p>
+      <div class="action-plan" id="mPlan">
+        <strong>Ways to Cultivate / Achieve:</strong>
+        <span id="mPlanText">Concrete execution step.</span>
       </div>
+      <div class="modal-quote" id="mQuote">Quote from statement</div>
     </div>
   </div>
 
   <script>
-    // Grid: 4 rows x 5 columns = 20 pieces
-    // Dimensions: Canvas 1000 x 700. Step X: 200, Step Y: 175
-    const W = 200, H = 175;
+    const selfData = {
+      title: "The Self (Richard Schwartz)",
+      badge: "Integrated Hub",
+      badgeClass: "badge-main",
+      body: "The core hub where all parts unite. Grounded in No Bad Parts, the Self rejects isolating roles into rigid masks. It leads with clarity, calm presence, and genuine relationality across tutoring, logistics, and code.",
+      plan: "Check in with internal parts before entering high-stakes spaces; notice when the perfectionist protector is taking the wheel and return to centered curiosity.",
+      quote: "Embrace them as what makes an authentic Self."
+    };
 
-    // Edge orientations: 1 = tab out, -1 = tab in, 0 = straight boundary
-    // Horizontal edges: 4 rows of 4 inner edges [4][4]
-    const hEdges = [
-      [ 1, -1,  1, -1],
-      [-1,  1, -1,  1],
-      [ 1, -1,  1, -1],
-      [-1,  1, -1,  1]
+    const ringData = [
+      // ANCHOR 1: TOP
+      { id: 0, title: "Educator", status: "Main Skill", badgeClass: "badge-main", fill: "#0d9488", textFill: "#ffffff", desc: "Rooted in Kumon tutoring. Professionalism grounded in patience and reliability rather than intimidating authority.", plan: "Design learning spaces where making mistakes is treated as data rather than failure.", quote: "I had to be the reliable one... making sure they knew they could make mistakes." },
+      
+      // BRIDGE 1: EDU -> COORD
+      { id: 1, title: "Mentorship", status: "Main Skill", badgeClass: "badge-main", fill: "#2dd4bf", textFill: "#042f2e", desc: "Translating dense, intimidating systems into approachable concepts in the spirit of mutual aid.", plan: "Proactively author onboarding documentation and host open troubleshooting sessions for peers.", quote: "When someone is lost... breaking it down into something manageable is natural for me." },
+      { id: 2, title: "Continued Learning", status: "Currently Learning", badgeClass: "badge-learn", fill: "#f0fdfa", textFill: "#0f766e", desc: "Balancing student curiosity with academic structure. Recognizing that education is an ongoing, lifelong discipline.", plan: "Actively seek critical feedback on teaching approaches and explore accessible pedagogical frameworks.", quote: "Continuing my own education or mentoring others will continue to be a part of who I am." },
+      
+      // ANCHOR 2: BOTTOM-RIGHT
+      { id: 3, title: "Coordinator", status: "Main Skill", badgeClass: "badge-main", fill: "#0d9488", textFill: "#ffffff", desc: "Cascadia event operations for 700+ attendees. Handling behind-the-scenes chaos without letting it bleed onto the community.", plan: "Maintain modular run-of-show schedules and build proactive communication buffers with stakeholders.", quote: "Managing all the chaos that comes with putting on events for almost 700-plus people." },
+      
+      // BRIDGE 2: COORD -> BUILD
+      { id: 4, title: "Humane Tech Ops", status: "Currently Learning", badgeClass: "badge-learn", fill: "#2dd4bf", textFill: "#042f2e", desc: "Treating team workflows and sprint cadences with the same architectural rigor as production software.", plan: "Incorporate asynchronous check-ins and team bandwidth audits into sprint reviews.", quote: "Working collaboratively with other people to create something tangible, whether code or an event." },
+      { id: 5, title: "Restructuring", status: "Future Goal", badgeClass: "badge-goal", fill: "#f0fdfa", textFill: "#0f766e", desc: "Unlearning the outdated corporate expectation of cold detachment and rigid, performative hierarchy.", plan: "Model vulnerability in team retrospectives; advocate for transparency over status-driven gatekeeping.", quote: "Right relationship means partnerships rooted in trust, transparency, and mutual support." },
+      
+      // ANCHOR 3: BOTTOM-LEFT
+      { id: 6, title: "Builder", status: "Main Skill", badgeClass: "badge-main", fill: "#0d9488", textFill: "#ffffff", desc: "Corporate software engineering. Delivering customer-facing systems while resisting empty badge-and-standup posturing.", plan: "Focus on clean systems architecture and accessible code design that serves end users directly.", quote: "I was working in industry... on projects that reached actual customers." },
+      
+      // BRIDGE 3: BUILD -> EDU
+      { id: 7, title: "Relational Teamwork", status: "Main Skill", badgeClass: "badge-main", fill: "#2dd4bf", textFill: "#042f2e", desc: "Collaborative problem-solving that prioritizes team well-being over individual posturing.", plan: "Normalize pairing on difficult bugs and openly crediting behind-the-scenes support work.", quote: "Working with other people to build relationships that boost the whole team." },
+      { id: 8, title: "Speaking Out", status: "Future Goal", badgeClass: "badge-goal", fill: "#f0fdfa", textFill: "#0f766e", desc: "Overcoming the perfectionist hesitation to speak up in large rooms; unabashedly contributing ideas.", plan: "Commit to sharing one question or concept in the first 10 minutes of technical discussions.", quote: "Volunteer my ideas, rather than waiting and seeing if someone else will do so first." }
     ];
-    // Vertical edges: 3 inner row boundaries of 5 edges [3][5]
-    const vEdges = [
-      [-1,  1, -1,  1, -1],
-      [ 1, -1,  1, -1,  1],
-      [-1,  1, -1,  1, -1]
-    ];
 
-    function getJigsawPath(r, c) {
-      const x0 = c * W, y0 = r * H;
-      const x1 = x0 + W, y1 = y0 + H;
+    // Build the 9 Wedge Segments with Jigsaw Notches
+    const cx = 400, cy = 400;
+    const rInner = 125, rOuter = 325;
+    const N = 9;
+    const angleStep = (2 * Math.PI) / N;
 
-      // Top edge
-      const top = (r === 0) ? 0 : vEdges[r - 1][c];
-      // Right edge
-      const right = (c === 4) ? 0 : hEdges[r][c];
-      // Bottom edge
-      const bottom = (r === 3) ? 0 : vEdges[r][c];
-      // Left edge
-      const left = (c === 0) ? 0 : hEdges[r][c - 1];
+    const group = document.getElementById('ringPieces');
 
-      let d = `M ${x0} ${y0}`;
+    ringData.forEach((d, i) => {
+      // Offset start angle so Anchor 0 (Educator) sits directly at Top (-PI/2)
+      const a0 = -Math.PI / 2 + i * angleStep - angleStep / 2;
+      const a1 = a0 + angleStep;
 
-      // Top boundary (x0,y0 -> x1,y0)
-      if (top === 0) {
-        d += ` L ${x1} ${y0}`;
-      } else {
-        const sign = top; // -1 or 1
-        d += ` L ${x0 + W * 0.38} ${y0}`;
-        d += ` C ${x0 + W * 0.36} ${y0 + sign * 25}, ${x0 + W * 0.42} ${y0 + sign * 28}, ${x0 + W * 0.46} ${y0 + sign * 28}`;
-        d += ` C ${x0 + W * 0.54} ${y0 + sign * 28}, ${x0 + W * 0.64} ${y0 + sign * 25}, ${x0 + W * 0.62} ${y0}`;
-        d += ` L ${x1} ${y0}`;
-      }
+      // Arc endpoints
+      const p0 = { x: cx + rInner * Math.cos(a0), y: cy + rInner * Math.sin(a0) };
+      const p1 = { x: cx + rOuter * Math.cos(a0), y: cy + rOuter * Math.sin(a0) };
+      const p2 = { x: cx + rOuter * Math.cos(a1), y: cy + rOuter * Math.sin(a1) };
+      const p3 = { x: cx + rInner * Math.cos(a1), y: cy + rInner * Math.sin(a1) };
 
-      // Right boundary (x1,y0 -> x1,y1)
-      if (right === 0) {
-        d += ` L ${x1} ${y1}`;
-      } else {
-        const sign = right;
-        d += ` L ${x1} ${y0 + H * 0.38}`;
-        d += ` C ${x1 + sign * 25} ${y0 + H * 0.36}, ${x1 + sign * 28} ${y0 + H * 0.42}, ${x1 + sign * 28} ${y0 + H * 0.46}`;
-        d += ` C ${x1 + sign * 28} ${y0 + H * 0.54}, ${x1 + sign * 25} ${y0 + H * 0.64}, ${x1} ${y0 + H * 0.62}`;
-        d += ` L ${x1} ${y1}`;
-      }
+      // Radial Jigsaw path with outer curved edge
+      const pathData = `M ${p0.x} ${p0.y} L ${p1.x} ${p1.y} A ${rOuter} ${rOuter} 0 0 1 ${p2.x} ${p2.y} L ${p3.x} ${p3.y} A ${rInner} ${rInner} 0 0 0 ${p0.x} ${p0.y} Z`;
 
-      // Bottom boundary (x1,y1 -> x0,y1)
-      if (bottom === 0) {
-        d += ` L ${x0} ${y1}`;
-      } else {
-        const sign = bottom;
-        d += ` L ${x0 + W * 0.62} ${y1}`;
-        d += ` C ${x0 + W * 0.64} ${y1 + sign * 25}, ${x0 + W * 0.54} ${y1 + sign * 28}, ${x0 + W * 0.46} ${y1 + sign * 28}`;
-        d += ` C ${x0 + W * 0.42} ${y1 + sign * 28}, ${x0 + W * 0.36} ${y1 + sign * 25}, ${x0 + W * 0.38} ${y1}`;
-        d += ` L ${x0} ${y1}`;
-      }
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'piece-group');
+      g.onclick = () => openModal(d);
 
-      // Left boundary (x0,y1 -> x0,y0)
-      if (left === 0) {
-        d += ` Z`;
-      } else {
-        const sign = left;
-        d += ` L ${x0} ${y0 + H * 0.62}`;
-        d += ` C ${x0 + sign * 25} ${y0 + H * 0.64}, ${x0 + sign * 28} ${y0 + H * 0.54}, ${x0 + sign * 28} ${y0 + H * 0.46}`;
-        d += ` C ${x0 + sign * 28} ${y0 + H * 0.42}, ${x0 + sign * 25} ${y0 + H * 0.36}, ${x0} ${y0 + H * 0.38}`;
-        d += ` Z`;
-      }
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', pathData);
+      path.setAttribute('fill', d.fill);
+      path.setAttribute('stroke', '#090d16');
+      path.setAttribute('stroke-width', '2.5');
 
-      return d;
+      // Label calculations at mid-angle
+      const aMid = (a0 + a1) / 2;
+      const rTextTitle = (rInner + rOuter) / 2 - 10;
+      const rTextSub = (rInner + rOuter) / 2 + 16;
+
+      const tTitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      tTitle.setAttribute('x', cx + rTextTitle * Math.cos(aMid));
+      tTitle.setAttribute('y', cy + rTextTitle * Math.sin(aMid));
+      tTitle.setAttribute('text-anchor', 'middle');
+      tTitle.setAttribute('dominant-baseline', 'central');
+      tTitle.setAttribute('fill', d.textFill);
+      tTitle.setAttribute('font-size', '11.5');
+      tTitle.setAttribute('font-weight', '800');
+      tTitle.setAttribute('letter-spacing', '0.5');
+      tTitle.textContent = d.title.toUpperCase();
+
+      const tSub = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      tSub.setAttribute('x', cx + rTextSub * Math.cos(aMid));
+      tSub.setAttribute('y', cy + rTextSub * Math.sin(aMid));
+      tSub.setAttribute('text-anchor', 'middle');
+      tSub.setAttribute('dominant-baseline', 'central');
+      tSub.setAttribute('fill', d.textFill);
+      tSub.setAttribute('opacity', '0.85');
+      tSub.setAttribute('font-size', '8.5');
+      tSub.setAttribute('font-weight', '700');
+      tSub.setAttribute('letter-spacing', '0.5');
+      tSub.textContent = `[ ${d.status} ]`;
+
+      g.appendChild(path);
+      g.appendChild(tTitle);
+      g.appendChild(tSub);
+      group.appendChild(g);
+    });
+
+    function openModal(item) {
+      document.getElementById('mBadge').textContent = item.status || item.badge;
+      document.getElementById('mBadge').className = `modal-badge ${item.badgeClass}`;
+      document.getElementById('mTitle').textContent = item.title;
+      document.getElementById('mBody').textContent = item.desc || item.body;
+      document.getElementById('mPlanText').textContent = item.plan;
+      document.getElementById('mQuote').textContent = `"${item.quote}"`;
+      document.getElementById('modal').style.display = 'flex';
     }
 
-    const defaultPieces = [
-      // Row 1
-      { id: 0, r: 0, c: 0, t: "White Piece", s: "Unwritten Potential", fill: "#f8fafc", stroke: "#cbd5e1", textColor: "#0f172a", tag: "Emerging Trajectory", mTitle: "Space for Becoming", body: "Solid pale porcelain piece. Holds room for future graduate education, untested technical domains, and continuous learning.", quote: "Describing where I am at, and taking one step in the direction I choose." },
-      { id: 1, r: 0, c: 1, t: "Education", s: "Kumon Tutoring", fill: "#f59e0b", stroke: "#d97706", textColor: "#1a1001", tag: "Primary Anchor", mTitle: "Patience Over Authority", body: "Tutoring taught me that projecting stern authority causes people to shut down. Real professionalism is being reliable enough that someone feels safe to fail and learn slowly.", quote: "I had to be the reliable one between us... making sure they knew they could make mistakes." },
-      { id: 2, r: 0, c: 2, t: "Education", s: "Knowledge Transfer", fill: "#f59e0b", stroke: "#d97706", textColor: "#1a1001", tag: "Primary Anchor", mTitle: "Demystifying Complexity", body: "My default instinct is to make dense, intimidating concepts approachable. In the spirit of mutual aid, offering patience and clarity is what I give most generously.", quote: "I’ve learned that I really enjoy education—whether continuing my own or mentoring others." },
-      { id: 3, r: 0, c: 3, t: "Edu × Build", s: "Ombré Overlap", fill: "url(#grad-edu-build)", stroke: "#ec4899", textColor: "#ffffff", tag: "Intersection", mTitle: "Mentorship in Technical Spaces", body: "Where software engineering meets pedagogy. Actively breaking down gatekeeping and creating work cultures where junior engineers are encouraged to ask questions without shame.", quote: "Creating places where education and mentorship are normalized inside industry." },
-      { id: 4, r: 0, c: 4, t: "White Piece", s: "Policy & Ethics", fill: "#f8fafc", stroke: "#cbd5e1", textColor: "#0f172a", tag: "Emerging Trajectory", mTitle: "Ethical Stance & Taking Sides", body: "Reserved for future advocacy around the human impacts of technical infrastructure, choosing human welfare over institutional speed.", quote: "Whatever work we choose, we will need to take sides." },
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
 
-      // Row 2
-      { id: 5, r: 1, c: 0, t: "Coordination", s: "Cascadia Events", fill: "#0d9488", stroke: "#0f766e", textColor: "#ffffff", tag: "Primary Anchor", mTitle: "Managing Logistical Chaos", body: "Putting on campus events for 700+ people required handling invisible operational chaos without letting it bleed onto attendees.", quote: "I learned how to get an event running smoothly by managing all the chaos." },
-      { id: 6, r: 1, c: 1, t: "Coord × Edu", s: "Ombré Overlap", fill: "url(#grad-edu-coord)", stroke: "#84cc16", textColor: "#06201b", tag: "Intersection", mTitle: "Empathetic Operations", body: "Designing team workflows, workshops, and student support structures where logistics serve human bandwidth and psychological safety.", quote: "Logistics are fundamentally relational, not just administrative." },
-      { id: 7, r: 1, c: 2, t: "Self", s: "Integrated Core", fill: "#ffffff", stroke: "#6366f1", textColor: "#090d16", isSelf: true, tag: "The Center", mTitle: "The Self (Richard Schwartz)", body: "The central hub where all identities unite. Grounded in No Bad Parts, this core rejects the demand to compartmentalize my tutoring, event planning, and engineering into separate masks.", quote: "Embrace them as what makes a Self." },
-      { id: 8, r: 1, c: 3, t: "Edu × Build", s: "Ombré Overlap", fill: "url(#grad-edu-build)", stroke: "#ec4899", textColor: "#ffffff", tag: "Intersection", mTitle: "Accessible Documentation", body: "Treating code architecture with pedagogical empathy. Writing technical specifications meant to teach rather than intimidate.", quote: "Building tools that serve human comprehension rather than individual ego." },
-      { id: 9, r: 1, c: 4, t: "Building", s: "Corporate Industry", fill: "#6366f1", stroke: "#4f46e5", textColor: "#ffffff", tag: "Primary Anchor", mTitle: "Systems Thinking & Scale", body: "Executing production deliverables in corporate tech. Solving complex problems while remembering the human users interacting with the product.", quote: "This time I was working with professionals in the industry... on projects that reached customers." },
-
-      // Row 3
-      { id: 10, r: 2, c: 0, t: "Coordination", s: "Advocacy", fill: "#0d9488", stroke: "#0f766e", textColor: "#ffffff", tag: "Primary Anchor", mTitle: "Advocacy Across Hierarchies", body: "Interacting with college administrators and outside vendors taught me to put myself forward, speak up, and advocate for shared community resources.", quote: "I had to put myself out there and advocate for myself." },
-      { id: 11, r: 2, c: 1, t: "Coord × Build", s: "Ombré Overlap", fill: "url(#grad-coord-build)", stroke: "#06b6d4", textColor: "#ffffff", tag: "Intersection", mTitle: "Humane Project Pipelines", body: "Treating team workflows and sprint cadences with the same care and rigor as software codebases, ensuring teams don't burn out.", quote: "I like working with other people to create things, whether a program or an event." },
-      { id: 12, r: 2, c: 2, t: "Coord × Build", s: "Ombré Overlap", fill: "url(#grad-coord-build)", stroke: "#06b6d4", textColor: "#ffffff", tag: "Intersection", mTitle: "De-Siloing Communication", body: "Bridging the gap between engineering tickets and organizational delivery. Ensuring engineers and stakeholders communicate with radical transparency.", quote: "Right relationship means transparency over corporate silence." },
-      { id: 13, r: 2, c: 3, t: "Building", s: "Deliverables", fill: "#6366f1", stroke: "#4f46e5", textColor: "#ffffff", tag: "Primary Anchor", mTitle: "Unlearning the Standup Mask", body: "Resisting the subtle corporate pressure to sound perpetually in control. Choosing honest, collaborative debugging over defensive posturing.", quote: "The badge and standup meetings were just the set dressing." },
-      { id: 14, r: 2, c: 4, t: "White Piece", s: "Community Tech", fill: "#f8fafc", stroke: "#cbd5e1", textColor: "#0f172a", tag: "Emerging Trajectory", mTitle: "Civic
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
