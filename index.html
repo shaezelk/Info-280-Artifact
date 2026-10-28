@@ -6,67 +6,28 @@
   <title>Shaezel's Wheel of (Professional) Wisdom</title>
   <style>
     :root {
-      /* Warm Beige / Off-White Palette */
       --bg: #f7f4ee;
       --card-bg: #ffffff;
       --border: #e6dfd3;
       --text-main: #33272b;
       --text-muted: #7d6b71;
-      
-      /* Pastel Pink Spectrum */
-      --pink-anchor: #f472b6;       /* Vibrant rose/pink anchor */
-      --pink-anchor-border: #db2777;
-      --pink-bridge: #fbcfe8;       /* Soft pastel pink */
-      --pink-fade: #fdf2f8;         /* Pale blush cream */
-      --self-core: #ffffff;
-      --self-border: #f472b6;
+      --pink-anchor: #f472b6;
+      --pink-bridge: #fbcfe8;
+      --pink-fade: #fdf2f8;
     }
 
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
-    }
-
-    body { 
-      background-color: var(--bg); 
-      color: var(--text-main); 
-      min-height: 100vh; 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 24px 16px; 
-    }
-
-    header { 
-      text-align: center; 
-      margin-bottom: 24px; 
-      max-width: 720px; 
-    }
-
-    h1 { 
-      font-size: 1.6rem; 
-      letter-spacing: 0.04em; 
-      font-weight: 800; 
-      color: #831843;
-      margin-bottom: 8px; 
-    }
-
-    p.subtitle { 
-      color: var(--text-muted); 
-      font-size: 0.95rem; 
-      line-height: 1.5; 
-      font-weight: 500;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 16px; }
+    header { text-align: center; margin-bottom: 24px; max-width: 720px; }
+    h1 { font-size: 1.6rem; letter-spacing: 0.04em; font-weight: 800; color: #831843; margin-bottom: 8px; }
+    p.subtitle { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; font-weight: 500; }
 
     .canvas-wrapper {
       background: #ffffff;
       border: 2px solid var(--border);
       border-radius: 50%;
       padding: 12px;
-      box-shadow: 0 20px 40px -15px rgba(131, 24, 67, 0.08), 0 0 0 1px rgba(230, 223, 211, 0.5);
+      box-shadow: 0 20px 40px -15px rgba(131, 24, 67, 0.08);
       width: 100%;
       max-width: 760px;
       display: flex;
@@ -74,134 +35,33 @@
       align-items: center;
     }
 
-    svg.radial-svg { 
-      width: 100%; 
-      height: auto; 
-      max-height: 720px; 
-      filter: drop-shadow(0 4px 12px rgba(131, 24, 67, 0.06)); 
-    }
-
-    .piece-group { 
-      cursor: pointer; 
-      transition: transform 0.2s ease, filter 0.2s ease; 
-      transform-origin: 400px 400px; 
-    }
-
-    .piece-group:hover { 
-      filter: brightness(1.05) drop-shadow(0 0 12px rgba(244, 114, 182, 0.45)); 
-    }
+    svg.radial-svg { width: 100%; height: auto; max-height: 720px; filter: drop-shadow(0 4px 12px rgba(131, 24, 67, 0.06)); }
+    .piece-group { cursor: pointer; transition: transform 0.2s ease, filter 0.2s ease; transform-origin: 400px 400px; }
+    .piece-group:hover { filter: brightness(1.05) drop-shadow(0 0 12px rgba(244, 114, 182, 0.45)); }
     
-    .center-circle { 
-      cursor: pointer; 
-      transition: transform 0.2s ease, filter 0.2s ease; 
-      transform-origin: 400px 400px;
-    }
+    .center-circle { cursor: pointer; transition: transform 0.2s ease, filter 0.2s ease; transform-origin: 400px 400px; }
+    .center-circle:hover { transform: scale(1.02); filter: drop-shadow(0 0 18px rgba(244, 114, 182, 0.5)); }
 
-    .center-circle:hover { 
-      transform: scale(1.02);
-      filter: drop-shadow(0 0 18px rgba(244, 114, 182, 0.5)); 
-    }
-
-    /* Modal Styling */
+    /* Modals */
     .modal-overlay {
-      position: fixed; 
-      inset: 0; 
-      background: rgba(51, 39, 43, 0.45); 
-      backdrop-filter: blur(6px);
-      display: none; 
-      align-items: center; 
-      justify-content: center; 
-      z-index: 100; 
-      padding: 20px;
+      position: fixed; inset: 0; background: rgba(51, 39, 43, 0.45); backdrop-filter: blur(6px);
+      display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px;
     }
-
     .modal-card {
-      background: var(--card-bg); 
-      border: 1px solid var(--border); 
-      border-radius: 18px;
-      max-width: 520px; 
-      width: 100%; 
-      padding: 32px; 
-      position: relative; 
-      box-shadow: 0 25px 50px -12px rgba(131, 24, 67, 0.2);
-      animation: popIn 0.2s ease-out;
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px;
+      max-width: 520px; width: 100%; padding: 32px; position: relative; box-shadow: 0 25px 50px -12px rgba(131, 24, 67, 0.2);
     }
-
-    @keyframes popIn {
-      from { opacity: 0; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    .modal-close { 
-      position: absolute; 
-      top: 18px; 
-      right: 18px; 
-      background: none; 
-      border: none; 
-      color: var(--text-muted); 
-      font-size: 1.4rem; 
-      cursor: pointer; 
-      line-height: 1;
-    }
+    .modal-close { position: absolute; top: 18px; right: 18px; background: none; border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer; line-height: 1; }
     .modal-close:hover { color: var(--text-main); }
-
-    .modal-badge { 
-      display: inline-block; 
-      padding: 4px 10px; 
-      border-radius: 20px; 
-      font-size: 0.72rem; 
-      font-weight: 700; 
-      letter-spacing: 0.04em;
-      text-transform: uppercase; 
-      margin-bottom: 12px; 
-    }
-
+    .modal-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
     .badge-main { background: #fce7f3; color: #9d174d; border: 1px solid #fbcfe8; }
     .badge-learn { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
     .badge-goal { background: #ede9fe; color: #5b21b6; border: 1px solid #ddd6fe; }
-
-    .modal-title { 
-      font-size: 1.35rem; 
-      font-weight: 800; 
-      color: #831843; 
-      margin-bottom: 12px; 
-    }
-
-    .modal-body { 
-      font-size: 0.95rem; 
-      line-height: 1.6; 
-      color: #4a3b40; 
-      margin-bottom: 16px; 
-    }
-
-    .action-plan { 
-      background: #fdf2f8; 
-      border-left: 3px solid #f472b6; 
-      padding: 12px 16px; 
-      border-radius: 0 8px 8px 0; 
-      font-size: 0.88rem; 
-      color: #4a3b40; 
-      margin-bottom: 16px; 
-      line-height: 1.5;
-    }
-
-    .action-plan strong { 
-      color: #9d174d; 
-      display: block; 
-      margin-bottom: 4px; 
-      font-size: 0.8rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .modal-quote { 
-      border-left: 3px solid #fbcfe8; 
-      padding-left: 14px; 
-      font-style: italic; 
-      color: var(--text-muted); 
-      font-size: 0.84rem; 
-      line-height: 1.5;
-    }
+    .modal-title { font-size: 1.35rem; font-weight: 800; color: #831843; margin-bottom: 12px; }
+    .modal-body { font-size: 0.95rem; line-height: 1.6; color: #4a3b40; margin-bottom: 16px; }
+    .action-plan { background: #fdf2f8; border-left: 3px solid #f472b6; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 0.88rem; color: #4a3b40; margin-bottom: 16px; line-height: 1.5; }
+    .action-plan strong { color: #9d174d; display: block; margin-bottom: 4px; font-size: 0.8rem; text-transform: uppercase; }
+    .modal-quote { border-left: 3px solid #fbcfe8; padding-left: 14px; font-style: italic; color: var(--text-muted); font-size: 0.84rem; line-height: 1.5; }
   </style>
 </head>
 <body>
@@ -220,15 +80,144 @@
         </filter>
       </defs>
 
-      <!-- Faint circular background guides -->
       <circle cx="400" cy="400" r="335" fill="none" stroke="#f1ece3" stroke-width="2" />
       <circle cx="400" cy="400" r="342" fill="none" stroke="#e6dfd3" stroke-width="1" stroke-dasharray="3 4" />
 
-      <!-- The 9 Radial Segments -->
-      <g id="ringPieces"></g>
+      <!-- All 9 Pieces Hardcoded into Pure HTML -->
+      <!-- 0: EDUCATOR -->
+      <g class="piece-group" onclick="openPieceModal(0)">
+        <path d="M 357.24 282.47 L 288.84 94.42 A 325 325 0 0 1 511.16 94.42 L 442.76 282.47 A 125 125 0 0 0 357.24 282.47 Z" fill="#f472b6" stroke="#db2777" stroke-width="2" />
+        <text x="400" y="165" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">EDUCATOR</text>
+        <text x="400" y="191" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8.5" font-weight="700">[ MAIN SKILL ]</text>
+      </g>
+
+      <!-- 1: MENTORSHIP -->
+      <g class="piece-group" onclick="openPieceModal(1)">
+        <path d="M 442.76 282.47 L 511.16 94.42 A 325 325 0 0 1 676.65 228.45 L 506.40 334.02 A 125 125 0 0 0 442.76 282.47 Z" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
+        <text x="546" y="228" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="12" font-weight="800">MENTORSHIP</text>
+        <text x="546" y="254" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="8.5" font-weight="700">[ MAIN SKILL ]</text>
+      </g>
+
+      <!-- 2: CONTINUED LEARNING -->
+      <g class="piece-group" onclick="openPieceModal(2)">
+        <path d="M 506.40 334.02 L 676.65 228.45 A 325 325 0 0 1 720.10 456.44 L 523.11 421.71 A 125 125 0 0 0 506.40 334.02 Z" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
+        <text x="618" y="350" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="11" font-weight="800">CONTINUED LEARNING</text>
+        <text x="618" y="376" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8.5" font-weight="700">[ CURRENTLY LEARNING ]</text>
+      </g>
+
+      <!-- 3: COORDINATOR -->
+      <g class="piece-group" onclick="openPieceModal(3)">
+        <path d="M 523.11 421.71 L 720.10 456.44 A 325 325 0 0 1 624.73 634.36 L 486.43 490.14 A 125 125 0 0 0 523.11 421.71 Z" fill="#f472b6" stroke="#db2777" stroke-width="2" />
+        <text x="599" y="504" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">COORDINATOR</text>
+        <text x="599" y="530" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8.5" font-weight="700">[ MAIN SKILL ]</text>
+      </g>
+
+      <!-- 4: HUMANE TECH OPS -->
+      <g class="piece-group" onclick="openPieceModal(4)">
+        <path d="M 486.43 490.14 L 624.73 634.36 A 325 325 0 0 1 437.66 722.81 L 414.49 524.16 A 125 125 0 0 0 486.43 490.14 Z" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
+        <text x="502" y="618" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="12" font-weight="800">HUMANE TECH OPS</text>
+        <text x="502" y="644" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="8.5" font-weight="700">[ CURRENTLY LEARNING ]</text>
+      </g>
+
+      <!-- 5: RESTRUCTURING -->
+      <g class="piece-group" onclick="openPieceModal(5)">
+        <path d="M 414.49 524.16 L 437.66 722.81 A 325 325 0 0 1 247.90 687.35 L 341.50 510.52 A 125 125 0 0 0 414.49 524.16 Z" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
+        <text x="353" y="632" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="12" font-weight="800">RESTRUCTURING</text>
+        <text x="353" y="658" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8.5" font-weight="700">[ FUTURE GOAL ]</text>
+      </g>
+
+      <!-- 6: BUILDER -->
+      <g class="piece-group" onclick="openPieceModal(6)">
+        <path d="M 341.50 510.52 L 247.90 687.35 A 325 325 0 0 1 106.84 538.35 L 287.25 453.21 A 125 125 0 0 0 341.50 510.52 Z" fill="#f472b6" stroke="#db2777" stroke-width="2" />
+        <text x="219" y="540" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">BUILDER</text>
+        <text x="219" y="566" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8.5" font-weight="700">[ MAIN SKILL ]</text>
+      </g>
+
+      <!-- 7: RELATIONAL TEAMWORK -->
+      <g class="piece-group" onclick="openPieceModal(7)">
+        <path d="M 287.25 453.21 L 106.84 538.35 A 325 325 0 0 1 94.42 311.16 L 282.47 365.83 A 125 125 0 0 0 287.25 453.21 Z" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
+        <text x="166" y="394" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="11" font-weight="800">RELATIONAL TEAMWORK</text>
+        <text x="166" y="420" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="8.5" font-weight="700">[ MAIN SKILL ]</text>
+      </g>
+
+      <!-- 8: SPEAKING OUT -->
+      <g class="piece-group" onclick="openPieceModal(8)">
+        <path d="M 282.47 365.83 L 94.42 311.16 A 325 325 0 0 1 200.00 143.78 L 323.08 301.45 A 125 125 0 0 0 282.47 365.83 Z" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
+        <text x="228" y="246" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="12" font-weight="800">SPEAKING OUT</text>
+        <text x="228" y="272" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8.5" font-weight="700">[ FUTURE GOAL ]</text>
+      </g>
 
       <!-- Center Circle: Self -->
-      <g class="center-circle" onclick="openModal(selfData)">
+      <g class="center-circle" onclick="openSelfModal()">
         <circle cx="400" cy="400" r="110" fill="#ffffff" stroke="#f472b6" stroke-width="4.5" filter="url(#glow-self)" />
         <circle cx="400" cy="400" r="102" fill="none" stroke="#fdf2f8" stroke-width="2" />
-        <text x="400"
+        <text x="400" y="394" text-anchor="middle" fill="#831843" font-size="21" font-weight="900" letter-spacing="3">SELF</text>
+        <text x="400" y="416" text-anchor="middle" fill="#db2777" font-size="9.5" font-weight="700" letter-spacing="1.2">INTEGRATED CORE</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal" onclick="closeModal()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div id="mBadge" class="modal-badge">Status</div>
+      <h2 class="modal-title" id="mTitle">Title</h2>
+      <p class="modal-body" id="mBody">Description</p>
+      <div class="action-plan" id="mPlan">
+        <strong>Ways to Cultivate / Achieve:</strong>
+        <span id="mPlanText">Concrete execution step.</span>
+      </div>
+      <div class="modal-quote" id="mQuote">Quote from statement</div>
+    </div>
+  </div>
+
+  <script>
+    const modalData = [
+      { title: "Educator", status: "Main Skill", badgeClass: "badge-main", body: "Rooted in Kumon tutoring. Professionalism grounded in patience and reliability rather than intimidating authority.", plan: "Design learning spaces where making mistakes is treated as data rather than failure.", quote: "I had to be the reliable one... making sure they knew they could make mistakes." },
+      { title: "Mentorship", status: "Main Skill", badgeClass: "badge-main", body: "Translating dense, intimidating systems into approachable concepts in the spirit of mutual aid.", plan: "Proactively author onboarding documentation and host open troubleshooting sessions for peers.", quote: "When someone is lost... breaking it down into something manageable is natural for me." },
+      { title: "Continued Learning", status: "Currently Learning", badgeClass: "badge-learn", body: "Balancing student curiosity with academic structure. Recognizing that education is an ongoing, lifelong discipline.", plan: "Actively seek critical feedback on teaching approaches and explore accessible pedagogical frameworks.", quote: "Continuing my own education or mentoring others will continue to be a part of who I am." },
+      { title: "Coordinator", status: "Main Skill", badgeClass: "badge-main", body: "Cascadia event operations for 700+ attendees. Handling behind-the-scenes chaos without letting it bleed onto the community.", plan: "Maintain modular run-of-show schedules and build proactive communication buffers with stakeholders.", quote: "Managing all the chaos that comes with putting on events for almost 700-plus people." },
+      { title: "Humane Tech Ops", status: "Currently Learning", badgeClass: "badge-learn", body: "Treating team workflows and sprint cadences with the same architectural rigor as production software.", plan: "Incorporate asynchronous check-ins and team bandwidth audits into sprint reviews.", quote: "Working collaboratively with other people to create something tangible, whether code or an event." },
+      { title: "Restructuring", status: "Future Goal", badgeClass: "badge-goal", body: "Unlearning the outdated corporate expectation of cold detachment and rigid, performative hierarchy.", plan: "Model vulnerability in team retrospectives; advocate for transparency over status-driven gatekeeping.", quote: "Right relationship means partnerships rooted in trust, transparency, and mutual support." },
+      { title: "Builder", status: "Main Skill", badgeClass: "badge-main", body: "Corporate software engineering. Delivering customer-facing systems while resisting empty badge-and-standup posturing.", plan: "Focus on clean systems architecture and accessible code design that serves end users directly.", quote: "I was working in industry... on projects that reached actual customers." },
+      { title: "Relational Teamwork", status: "Main Skill", badgeClass: "badge-main", body: "Collaborative problem-solving that prioritizes team well-being over individual posturing.", plan: "Normalize pairing on difficult bugs and openly crediting behind-the-scenes support work.", quote: "Working with other people to build relationships that boost the whole team." },
+      { title: "Speaking Out", status: "Future Goal", badgeClass: "badge-goal", body: "Overcoming the perfectionist hesitation to speak up in large rooms; unabashedly contributing ideas.", plan: "Commit to sharing one question or concept in the first 10 minutes of technical discussions.", quote: "Volunteer my ideas, rather than waiting and seeing if someone else will do so first." }
+    ];
+
+    function openPieceModal(idx) {
+      const item = modalData[idx];
+      showModal(item.status, item.badgeClass, item.title, item.body, item.plan, item.quote);
+    }
+
+    function openSelfModal() {
+      showModal(
+        "Integrated Hub",
+        "badge-main",
+        "The Self (Richard Schwartz)",
+        "The core hub where all parts unite. Drawing from No Bad Parts, the Self rejects isolating roles into rigid masks. It leads with clarity, patience, and genuine relationality across tutoring, logistics, and technical building.",
+        "Check in with internal parts before entering high-stakes spaces; notice when the perfectionist protector steps in and return to centered curiosity.",
+        "Embrace them as what makes an authentic Self."
+      );
+    }
+
+    function showModal(badge, bClass, title, body, plan, quote) {
+      document.getElementById('mBadge').textContent = badge;
+      document.getElementById('mBadge').className = `modal-badge ${bClass}`;
+      document.getElementById('mTitle').textContent = title;
+      document.getElementById('mBody').textContent = body;
+      document.getElementById('mPlanText').textContent = plan;
+      document.getElementById('mQuote').textContent = `"${quote}"`;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
