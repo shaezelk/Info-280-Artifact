@@ -49,19 +49,58 @@
     }
     .modal-card {
       background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px;
-      max-width: 520px; width: 100%; padding: 32px; position: relative; box-shadow: 0 25px 50px -12px rgba(131, 24, 67, 0.2);
+      max-width: 530px; width: 100%; padding: 32px; position: relative; box-shadow: 0 25px 50px -12px rgba(131, 24, 67, 0.2);
     }
     .modal-close { position: absolute; top: 18px; right: 18px; background: none; border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer; line-height: 1; }
     .modal-close:hover { color: var(--text-main); }
+    
     .modal-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; }
     .badge-main { background: #fce7f3; color: #9d174d; border: 1px solid #fbcfe8; }
     .badge-learn { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
     .badge-goal { background: #ede9fe; color: #5b21b6; border: 1px solid #ddd6fe; }
-    .modal-title { font-size: 1.35rem; font-weight: 800; color: #831843; margin-bottom: 12px; }
-    .modal-body { font-size: 0.95rem; line-height: 1.6; color: #4a3b40; margin-bottom: 16px; }
-    .action-plan { background: #fdf2f8; border-left: 3px solid #f472b6; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 0.88rem; color: #4a3b40; margin-bottom: 16px; line-height: 1.5; }
-    .action-plan strong { color: #9d174d; display: block; margin-bottom: 4px; font-size: 0.8rem; text-transform: uppercase; }
-    .modal-quote { border-left: 3px solid #fbcfe8; padding-left: 14px; font-style: italic; color: var(--text-muted); font-size: 0.84rem; line-height: 1.5; }
+
+    .modal-title { font-size: 1.4rem; font-weight: 800; color: #831843; margin-bottom: 14px; }
+    
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9d174d;
+      margin-bottom: 6px;
+    }
+
+    .modal-definition {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #33272b;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .action-box {
+      background: #fdf2f8;
+      border-left: 3.5px solid #f472b6;
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+    }
+    .action-box-header {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #9d174d;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .action-box-content {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: #4a3b40;
+    }
   </style>
 </head>
 <body>
@@ -78,66 +117,65 @@
           <feGaussianBlur stdDeviation="6" result="blur" />
           <feComposite in="SourceGraphic" in2="blur" operator="over" />
         </filter>
-        <!-- Standardized, perfectly symmetrical single wedge template (span: 37.5°, leaving 2.5° uniform gap) -->
-        <!-- Inner R: 126, Outer R: 325, Centered on top (y-axis) -->
+        <!-- Uniform 37.5° wedge with 2.5° natural gaps -->
         <path id="wedgePath" d="M 359.50 280.20 L 295.60 92.50 A 325 325 0 0 1 504.40 92.50 L 440.50 280.20 A 126 126 0 0 0 359.50 280.20 Z" />
       </defs>
 
       <circle cx="400" cy="400" r="335" fill="none" stroke="#f1ece3" stroke-width="2" />
       <circle cx="400" cy="400" r="342" fill="none" stroke="#e6dfd3" stroke-width="1" stroke-dasharray="3 4" />
 
-      <!-- 0: EDUCATOR (Top Anchor: 0 deg) -->
+      <!-- 0: EDUCATOR (Top Anchor: 0°) -->
       <g class="piece-group" onclick="openPieceModal(0)">
         <use href="#wedgePath" fill="#f472b6" stroke="#db2777" stroke-width="2" />
         <text x="400" y="180" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">EDUCATOR</text>
         <text x="400" y="202" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
-      <!-- 1: MENTORSHIP (+40 deg) -->
+      <!-- 1: CONTINUED LEARNING (+40°) -> Swapped next to Educator -->
       <g class="piece-group" onclick="openPieceModal(1)">
         <use href="#wedgePath" transform="rotate(40 400 400)" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
-        <text x="545" y="228" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="11.5" font-weight="800">MENTORSHIP</text>
-        <text x="545" y="250" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
+        <text x="545" y="218" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">CONTINUED</text>
+        <text x="545" y="232" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">LEARNING</text>
+        <text x="545" y="252" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="7.5" font-weight="700">[ CURRENTLY LEARNING ]</text>
       </g>
 
-      <!-- 2: CONTINUED LEARNING (+80 deg) -->
+      <!-- 2: MENTORSHIP (+80°) -> Swapped next to Coordinator -->
       <g class="piece-group" onclick="openPieceModal(2)">
         <use href="#wedgePath" transform="rotate(80 400 400)" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
-        <text x="622" y="348" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="10" font-weight="800">CONTINUED</text>
-        <text x="622" y="364" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="10" font-weight="800">LEARNING</text>
-        <text x="622" y="386" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="7.5" font-weight="700">[ CURRENTLY LEARNING ]</text>
+        <text x="622" y="352" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="11.5" font-weight="800">MENTORSHIP</text>
+        <text x="622" y="374" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8" font-weight="700">[ FUTURE GOAL ]</text>
       </g>
 
-      <!-- 3: COORDINATOR (Bottom-Right Anchor: +120 deg) -->
+      <!-- 3: COORDINATOR (Anchor: +120°) -->
       <g class="piece-group" onclick="openPieceModal(3)">
         <use href="#wedgePath" transform="rotate(120 400 400)" fill="#f472b6" stroke="#db2777" stroke-width="2" />
         <text x="595" y="500" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">COORDINATOR</text>
         <text x="595" y="522" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
-      <!-- 4: HUMANE TECH OPS (+160 deg) -->
+      <!-- 4: HUMANE TECH OPS (+160°) -->
       <g class="piece-group" onclick="openPieceModal(4)">
         <use href="#wedgePath" transform="rotate(160 400 400)" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
-        <text x="478" y="608" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10.5" font-weight="800">HUMANE TECH</text>
-        <text x="478" y="624" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10.5" font-weight="800">OPS</text>
+        <text x="478" y="608" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">HUMANE TECH</text>
+        <text x="478" y="624" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">OPS</text>
         <text x="478" y="646" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="7.5" font-weight="700">[ CURRENTLY LEARNING ]</text>
       </g>
 
-      <!-- 5: RESTRUCTURING (+200 deg) -->
+      <!-- 5: RESTRUCTURING (+200°) -->
       <g class="piece-group" onclick="openPieceModal(5)">
         <use href="#wedgePath" transform="rotate(200 400 400)" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
         <text x="322" y="616" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="10.5" font-weight="800">RESTRUCTURING</text>
         <text x="322" y="638" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8" font-weight="700">[ FUTURE GOAL ]</text>
       </g>
 
-      <!-- 6: BUILDER (Bottom-Left Anchor: +240 deg) -->
+      <!-- 6: BUILDER (Anchor: +240°) -->
       <g class="piece-group" onclick="openPieceModal(6)">
         <use href="#wedgePath" transform="rotate(240 400 400)" fill="#f472b6" stroke="#db2777" stroke-width="2" />
         <text x="205" y="500" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="12" font-weight="800">BUILDER</text>
         <text x="205" y="522" text-anchor="middle" dominant-baseline="central" fill="#ffffff" font-size="8" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
-      <!-- 7: RELATIONAL TEAMWORK (+280 deg) -->
+      <!-- 7: RELATIONAL TEAMWORK (+280°) -->
       <g class="piece-group" onclick="openPieceModal(7)">
         <use href="#wedgePath" transform="rotate(280 400 400)" fill="#fbcfe8" stroke="#f472b6" stroke-width="2" />
         <text x="178" y="348" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="10" font-weight="800">RELATIONAL</text>
@@ -145,84 +183,26 @@
         <text x="178" y="386" text-anchor="middle" dominant-baseline="central" fill="#831843" font-size="7.5" font-weight="700">[ MAIN SKILL ]</text>
       </g>
 
-      <!-- 8: SPEAKING OUT (+320 deg) -->
+      <!-- 8: SPEAKING OUT (+320°) -->
       <g class="piece-group" onclick="openPieceModal(8)">
         <use href="#wedgePath" transform="rotate(320 400 400)" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2" />
         <text x="255" y="228" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="11.5" font-weight="800">SPEAKING OUT</text>
         <text x="255" y="250" text-anchor="middle" dominant-baseline="central" fill="#9d174d" font-size="8" font-weight="700">[ FUTURE GOAL ]</text>
       </g>
 
-      <!-- Center Circle: Self -->
+      <!-- Center Circle: Who am I -->
       <g class="center-circle" onclick="openSelfModal()">
         <circle cx="400" cy="400" r="110" fill="#ffffff" stroke="#f472b6" stroke-width="4.5" filter="url(#glow-self)" />
         <circle cx="400" cy="400" r="102" fill="none" stroke="#fdf2f8" stroke-width="2" />
-        <text x="400" y="394" text-anchor="middle" fill="#831843" font-size="21" font-weight="900" letter-spacing="3">SELF</text>
-        <text x="400" y="416" text-anchor="middle" fill="#db2777" font-size="9.5" font-weight="700" letter-spacing="1.2">INTEGRATED CORE</text>
+        <text x="400" y="394" text-anchor="middle" fill="#831843" font-size="20" font-weight="900" letter-spacing="2">WHO AM I</text>
+        <text x="400" y="416" text-anchor="middle" fill="#db2777" font-size="9" font-weight="700" letter-spacing="1">THE SELF</text>
       </g>
     </svg>
   </div>
 
-  <!-- Modal -->
+  <!-- Detail Modal -->
   <div class="modal-overlay" id="modal" onclick="closeModal()">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal()">&times;</button>
       <div id="mBadge" class="modal-badge">Status</div>
       <h2 class="modal-title" id="mTitle">Title</h2>
-      <p class="modal-body" id="mBody">Description</p>
-      <div class="action-plan" id="mPlan">
-        <strong>Ways to Cultivate / Achieve:</strong>
-        <span id="mPlanText">Concrete execution step.</span>
-      </div>
-      <div class="modal-quote" id="mQuote">Quote from statement</div>
-    </div>
-  </div>
-
-  <script>
-    const modalData = [
-      { title: "Educator", status: "Main Skill", badgeClass: "badge-main", body: "Rooted in Kumon tutoring. Professionalism grounded in patience and reliability rather than intimidating authority.", plan: "Design learning spaces where making mistakes is treated as data rather than failure.", quote: "I had to be the reliable one... making sure they knew they could make mistakes." },
-      { title: "Mentorship", status: "Main Skill", badgeClass: "badge-main", body: "Translating dense, intimidating systems into approachable concepts in the spirit of mutual aid.", plan: "Proactively author onboarding documentation and host open troubleshooting sessions for peers.", quote: "When someone is lost... breaking it down into something manageable is natural for me." },
-      { title: "Continued Learning", status: "Currently Learning", badgeClass: "badge-learn", body: "Balancing student curiosity with academic structure. Recognizing that education is an ongoing, lifelong discipline.", plan: "Actively seek critical feedback on teaching approaches and explore accessible pedagogical frameworks.", quote: "Continuing my own education or mentoring others will continue to be a part of who I am." },
-      { title: "Coordinator", status: "Main Skill", badgeClass: "badge-main", body: "Cascadia event operations for 700+ attendees. Handling behind-the-scenes chaos without letting it bleed onto the community.", plan: "Maintain modular run-of-show schedules and build proactive communication buffers with stakeholders.", quote: "Managing all the chaos that comes with putting on events for almost 700-plus people." },
-      { title: "Humane Tech Ops", status: "Currently Learning", badgeClass: "badge-learn", body: "Treating team workflows and sprint cadences with the same architectural rigor as production software.", plan: "Incorporate asynchronous check-ins and team bandwidth audits into sprint reviews.", quote: "Working collaboratively with other people to create something tangible, whether code or an event." },
-      { title: "Restructuring", status: "Future Goal", badgeClass: "badge-goal", body: "Unlearning the outdated corporate expectation of cold detachment and rigid, performative hierarchy.", plan: "Model vulnerability in team retrospectives; advocate for transparency over status-driven gatekeeping.", quote: "Right relationship means partnerships rooted in trust, transparency, and mutual support." },
-      { title: "Builder", status: "Main Skill", badgeClass: "badge-main", body: "Corporate software engineering. Delivering customer-facing systems while resisting empty badge-and-standup posturing.", plan: "Focus on clean systems architecture and accessible code design that serves end users directly.", quote: "I was working in industry... on projects that reached actual customers." },
-      { title: "Relational Teamwork", status: "Main Skill", badgeClass: "badge-main", body: "Collaborative problem-solving that prioritizes team well-being over individual posturing.", plan: "Normalize pairing on difficult bugs and openly crediting behind-the-scenes support work.", quote: "Working with other people to build relationships that boost the whole team." },
-      { title: "Speaking Out", status: "Future Goal", badgeClass: "badge-goal", body: "Overcoming the perfectionist hesitation to speak up in large rooms; unabashedly contributing ideas.", plan: "Commit to sharing one question or concept in the first 10 minutes of technical discussions.", quote: "Volunteer my ideas, rather than waiting and seeing if someone else will do so first." }
-    ];
-
-    function openPieceModal(idx) {
-      const item = modalData[idx];
-      showModal(item.status, item.badgeClass, item.title, item.body, item.plan, item.quote);
-    }
-
-    function openSelfModal() {
-      showModal(
-        "Integrated Hub",
-        "badge-main",
-        "The Self (Richard Schwartz)",
-        "The core hub where all parts unite. Drawing from No Bad Parts, the Self rejects isolating roles into rigid masks. It leads with clarity, patience, and genuine relationality across tutoring, logistics, and technical building.",
-        "Check in with internal parts before entering high-stakes spaces; notice when the perfectionist protector steps in and return to centered curiosity.",
-        "Embrace them as what makes an authentic Self."
-      );
-    }
-
-    function showModal(badge, bClass, title, body, plan, quote) {
-      document.getElementById('mBadge').textContent = badge;
-      document.getElementById('mBadge').className = `modal-badge ${bClass}`;
-      document.getElementById('mTitle').textContent = title;
-      document.getElementById('mBody').textContent = body;
-      document.getElementById('mPlanText').textContent = plan;
-      document.getElementById('mQuote').textContent = `"${quote}"`;
-      document.getElementById('modal').style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal();
-    });
-  </script>
-</body>
-</html>
